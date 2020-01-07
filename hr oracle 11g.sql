@@ -2,7 +2,7 @@
 /* 1 -------------------------------------------
 Write "hello world" greeting. The column should be called "Welcome".
 */
-SELECT 'hello world' as "Welcome"
+SELECT 'hello world' AS "Welcome"
 FROM dual;
 
 /* 2 -------------------------------------------
@@ -32,7 +32,7 @@ c) those employees whose phone number contains two digits 7 in any place except 
 */
 SELECT first_name, last_name, phone_number 
 FROM employees
-WHERE PHONE_NUMBER LIKE '_%7%7%';
+WHERE phone_number LIKE '_%7%7%';
 
 /*
 d) 10 people with the highest salary
@@ -72,16 +72,3 @@ SELECT location_id, NVL(state_province, 'lack of state_province')
 FROM locations
 WHERE state_province IS NULL;
 
-/* 4 -------------------------------------------
-From JOBS table select:
-
-a) the largest minimum pay
-*/
-SELECT max(min_salary) 
-FROM jobs;
-
-/*
-b) for each job title, find the difference between the minimum and maximum pay
-*/
-SELECT job_title, (max_salary - min_salary) AS "max - min" 
-FROM jobs;
