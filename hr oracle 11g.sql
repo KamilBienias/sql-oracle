@@ -56,6 +56,27 @@ WHERE salary = (
                 WHERE first_name = 'Den' AND last_name = 'Raphaely'
                 );
 
+/*
+f) how many employees are in each department. Sort the result from the largest number of employees
+*/
+SELECT department_id, COUNT(ROWNUM)
+FROM employees
+GROUP BY department_id
+ORDER BY COUNT(ROWNUM) DESC;
+
+/*
+g) employees from each department whose salary is greater than the average salary in that department.
+   Sort the result by department_id. Use correlated query
+*/
+SELECT outer.department_id, outer.employee_id, outer.first_name, outer.last_name, outer.salary
+FROM employees outer
+WHERE outer.salary > (
+                     SELECT AVG(salary)
+                     FROM employees
+                     WHERE department_id = outer.department_id
+                     )
+ORDER BY outer.department_id;
+
 /* 3 -------------------------------------------
 From LOCATIONS table select:
 
@@ -71,19 +92,3 @@ b) locations that don't have state_province. The state_province field should con
 SELECT location_id, NVL(state_province, 'lack of state_province')
 FROM locations
 WHERE state_province IS NULL;
-
--- ilu pracowników jest w ka¿dym departamencie. Wynik uporz¹dkuj od najwiêkszej iloœci pracowników
-SELECT department_id, COUNT(ROWNUM)
-FROM employees
-GROUP BY department_id
-ORDER BY COUNT(ROWNUM) DESC;
-
--- wyœwietl pracowników z ka¿dego departamentu, których pensja jest wiêksza od œredniej pensji w danym departamencie. Uporz¹dkuj departamentami
-SELECT outer.department_id, outer.employee_id, outer.first_name, outer.last_name, outer.salary
-FROM employees outer
-WHERE outer.salary > (
-                     SELECT AVG(salary)
-                     FROM employees
-                     WHERE department_id = outer.department_id
-                     )
-ORDER BY outer.department_id;
