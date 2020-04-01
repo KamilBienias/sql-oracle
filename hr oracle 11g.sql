@@ -78,8 +78,16 @@ WHERE outer.salary > (
 ORDER BY outer.department_id;
 
 /*
-h) verbal description of the salary depending on its amount
+h) verbal description of the salary depending on its amount. Order by salary descending.
 */
+SELECT employee_id, first_name, last_name, salary, 
+    CASE
+        WHEN salary < 7000 THEN 'poor'
+        WHEN salary BETWEEN 7000 AND 10000 THEN 'mid'
+        WHEN salary > 10000 THEN 'rich'
+    END AS "Employee status"
+FROM employees
+ORDER BY salary DESC;
 
 
 /* 3 -------------------------------------------
