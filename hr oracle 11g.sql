@@ -77,6 +77,11 @@ WHERE outer.salary > (
                      )
 ORDER BY outer.department_id;
 
+/*
+h) verbal description of the salary depending on its amount
+*/
+
+
 /* 3 -------------------------------------------
 From LOCATIONS table select:
 
